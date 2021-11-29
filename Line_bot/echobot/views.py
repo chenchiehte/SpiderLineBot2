@@ -16,15 +16,23 @@ def callback(request):
     if request.method == 'POST':
         signature = request.META['HTTP_X_LINE_SIGNATURE']
         body = request.body.decode('utf-8')
+
         try:
-            handler.handle(body, signature)
+            events = parser.parse(body, signature)
         except InvalidSignatureError:
-            messages = (
-                "Invalid signature. Please check your channel access token/channel secret."
-            )
-            logger.error(messages)
-            return HttpResponseBadRequest(messages)
-        return HttpResponse("OK")
+            return HttpResponseForbidden()
+        except LineBotApiError:
+            return HttpResponseBadRequest()
+
+        for event in events:
+            if isinstance(event, MessageEvent):
+                line_bot_api.reply_message(
+                    event.reply_token,
+                   TextSendMessage(text=event.message.text)
+                )
+        return HttpResponse()
+    else:
+        return HttpResponseBadRequest()
 
 @handler.add(event=MessageEvent, message=TextMessage)
 def handl_message(event):
