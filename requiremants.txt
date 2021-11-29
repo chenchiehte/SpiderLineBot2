@@ -13,3 +13,4 @@ gunicorn == 19.7.1
 six
 selenium==3.8.0
 DateTime
+Beautifulsoup4
