@@ -30,7 +30,7 @@ def callback(request):
                     event.reply_token,
                    TextSendMessage(text=event.message.text)
                 )
-        return HttpResponse()
+        return HttpResponse("ok")
     else:
         return HttpResponseBadRequest()
 
