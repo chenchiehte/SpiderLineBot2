@@ -14,6 +14,17 @@ handler = WebhookHandler("cf5191a1405dbf6b419917bc1915917c")
 @csrf_exempt
 def callback(request):
     if request.method == 'POST':
+        signature = request.headers['X-Line-Signature']
+        body = request.get_data(as_text=True)
+
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        print("Invalid signature. Please check your channel access token/channel secret.")
+        abort(400)
+        
+    return 'OK'
+'''
         signature = request.META['HTTP_X_LINE_SIGNATURE']
         body = request.body.decode('utf-8')
 
@@ -33,7 +44,7 @@ def callback(request):
         return HttpResponse("ok")
     else:
         return HttpResponseBadRequest()
-
+'''
 @handler.add(event=MessageEvent, message=TextMessage)
 def handl_message(event):
    
