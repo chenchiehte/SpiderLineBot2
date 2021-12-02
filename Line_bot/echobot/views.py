@@ -14,7 +14,7 @@ handler = WebhookHandler("cf5191a1405dbf6b419917bc1915917c")
 @csrf_exempt
 def callback(request):
     if request.method == 'POST':
-        signature = request.MATA['X-Line-Signature']
+        signature = request.META['X-Line-Signature']
         body = request.body.decode('utf-8')
 
         try:
