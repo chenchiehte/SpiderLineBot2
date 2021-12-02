@@ -27,7 +27,7 @@ def callback(request):
     else:
         return HttpResponseBadRequest()
     
-@handler.add(event=MessageEvent, message=TextMessage)
+@handler.add(event=MessageEvent)
 def handl_message(event):
    
     response = requests.get(
