@@ -38,7 +38,7 @@ def handl_message(event):
     titles=soup.find_all("h3",limit=10)
     outInfo=""
     for title in titles:
-        outInfo+=print(title.select_one("a").getText()+"\n"+title.select_one("a").get("href"))
+        outInfo+=title.select_one("a").getText()+"\n"+title.select_one("a").get("href")+"\n"
     message = TextSendMessage(text=outInfo)
     line_bot_api.reply_message(
     event.reply_token,
