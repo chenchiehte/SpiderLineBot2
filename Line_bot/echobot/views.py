@@ -18,21 +18,15 @@ def callback(request):
         body = request.body.decode('utf-8')
 
         try:
-            events = handler.handle(body, signature)
+            handler.handle(body, signature)
         except InvalidSignatureError:
             return HttpResponseForbidden()
         except LineBotApiError:
             return HttpResponseBadRequest()
-
-        for event in events:
-            if isinstance(event, MessageEvent):
-                line_bot_api.reply_message(
-                    event.reply_token,
-                   TextSendMessage(text=event.message.text)
-                )
         return HttpResponse("ok")
     else:
         return HttpResponseBadRequest()
+    
 @handler.add(event=MessageEvent, message=TextMessage)
 def handl_message(event):
    
