@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-cgd*iwue)a!$j&t%(19hv1*w7yr_qh=)em1uy_%jjg&!hf=5=(
 DEBUG = True
 
 ALLOWED_HOSTS = ["linebotttt.onrender.com"]
-
+APPEND_SLASH=False
 
 # Application definition
 LINE_CHANNEL_ACCESS_TOKEN= "HTExNo62oadvqggyDBnIr0kbeJaNYgffN7FMSLWJ6DTOEGiYIuERbisRuCV9xEuw13I9d2gT65zEHXzL6/4/DjUW8TYaFPc8lS4Bjcl3qQsO6YYM1/tLFp1IwCuT3n3IYURUpbt9XkOpjf2CtoNZlQdB04t89/1O/w1cDnyilFU="
