@@ -31,14 +31,14 @@ def callback(request):
 def handl_message(event):
    
     response = requests.get(
-    "https://travel.ettoday.net/focus/%E6%9A%A2%E9%81%8A%E5%8F%B0%E7%81%A3/"
+    "https://travel.ettoday.net/article/2101206.htm"
     )
     soup = BeautifulSoup(response.text, "html.parser")
 
     titles=soup.find_all("h3",limit=10)
     outInfo=""
     for title in titles:
-        outInfo+=title.select_one("a").getText()+"\n"+title.select_one("h3").get("href")+"\n"
+        outInfo+=title.select_one("a").getText()+"\n"+title.select_one("a").get("href")+"\n"
     message = TextSendMessage(text=outInfo)
     line_bot_api.reply_message(
     event.reply_token,
