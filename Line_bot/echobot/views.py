@@ -31,7 +31,7 @@ def callback(request):
 def handl_message(event):
    
     response = requests.get(
-    "https://travel.ettoday.net/article/2101206.htm"
+    "https://travel.ettoday.net/category/%E5%8D%97%E6%8A%95/"
     )
     soup = BeautifulSoup(response.text, "html.parser")
 
