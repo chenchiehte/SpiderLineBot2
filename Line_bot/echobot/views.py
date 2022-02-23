@@ -35,7 +35,7 @@ def handl_message(event):
     )
     soup = BeautifulSoup(response.text, "html.parser")
 
-    titles=soup.find_all("h3",itemprop="headline",limit=9)
+    titles=soup.find_all("h3",limit=10)
     outInfo=""
     for title in titles:
         outInfo+=title.select_one("a").getText()+"\n"+title.select_one("a").get("href")+"\n"
